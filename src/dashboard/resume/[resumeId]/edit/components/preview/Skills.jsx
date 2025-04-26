@@ -34,7 +34,7 @@ const Skills = ({ resumeInfo }) => {
               className="font-semibold text-sm mb-1"
               style={{ color: textColor }}
             >
-              Frameworks
+              Frameworks 
             </h3>
             <ul className="list-disc pl-5 text-sm space-y-1">
               {resumeInfo.skills.frameworks.map((framework, index) => (

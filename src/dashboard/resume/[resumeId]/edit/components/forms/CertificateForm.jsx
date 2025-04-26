@@ -59,9 +59,7 @@ const CertificateForm = ({ onNextChange }) => {
       await GlobelApi.updateResume(params?.resumeId, data); 
       toast.success("Certifications saved successfully!");
 
-      if (onNextChange) {
-        onNextChange();
-      }
+      onNextChange(true);
     } catch (error) {
       toast.error("Failed to save certifications.");
     } finally {

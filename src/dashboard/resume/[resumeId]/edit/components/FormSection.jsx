@@ -17,7 +17,7 @@ const FormSection = () => {
   const [formIndex, setFormIIndex] = useState(1);
   const [onNextChange, setOnNextChange] = useState(false);
   return (
-    <div className="p-10">
+    <div className="p-3 md:p-10">
       <div className="flex justify-between items-center">
         <Button variant="outline">Theme</Button>
         <div className="flex justify-center items-center gap-2">

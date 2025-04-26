@@ -30,23 +30,27 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl text-center font-bold text-gray-900 mb-4">
-          My Resume
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
+        <h1 className="text-3xl sm:text-4xl text-center font-bold text-gray-900 mb-4">
+          My Resumes
         </h1>
         <p className="text-center text-lg text-gray-600 mb-8">
-          Make your AI Resume for your next job
+          Create, view, and manage your AI-powered resumes for the next big opportunity.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AddResume />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex justify-center">
+            <AddResume />
+          </div>
+
           {resumeList && resumeList.length > 0 ? (
             resumeList.map((item, index) => (
               <ResumeCardItem key={index} item={item} index={index} />
             ))
           ) : (
             <div className="col-span-full text-center text-gray-500">
-              No resumes found
+              <p>No resumes found. Start by creating one!</p>
             </div>
           )}
         </div>

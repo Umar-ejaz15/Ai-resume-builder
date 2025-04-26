@@ -1,8 +1,6 @@
 import { Loader2, PlusSquare } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
-
 import {
   Dialog,
   DialogContent,
@@ -43,7 +41,6 @@ const AddResume = () => {
       const newResumeId = response?.data?.data?.documentId;
 
       console.log(newResumeId);
-      
 
       if (newResumeId) {
         navigation(`/dashboard/resume/${newResumeId}/edit`); // <- Navigate with Strapi's ID
@@ -75,7 +72,7 @@ const AddResume = () => {
       </div>
 
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-xl p-6">
           <DialogHeader className="space-y-4">
             <DialogTitle className="text-2xl font-semibold text-gray-900">
               Create Your Resume
@@ -87,17 +84,17 @@ const AddResume = () => {
               <Input
                 onChange={(e) => setResumeTitle(e.target.value)}
                 value={resumeTitle}
-                className="mt-4 transition-all duration-200 focus:ring-2 focus:ring-blue-500"
+                className="mt-4 w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter resume title..."
               />
             </DialogDescription>
             {errorMessage && (
               <div className="text-red-500 text-sm mt-2">{errorMessage}</div>
             )}
-            <div className="flex justify-end gap-3 pt-6">
+            <div className="flex justify-between gap-3 pt-6">
               <Button
                 variant="outline"
-                className="hover:bg-gray-100 transition-colors"
+                className="w-full sm:w-auto hover:bg-gray-100 transition-colors"
                 onClick={() => setOpenDialog(false)}
               >
                 Cancel
@@ -105,7 +102,7 @@ const AddResume = () => {
               <Button
                 disabled={!resumeTitle || loading}
                 onClick={onCreateResume}
-                className=""
+                className="w-full sm:w-auto"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" />
