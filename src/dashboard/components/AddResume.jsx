@@ -91,7 +91,7 @@ const AddResume = () => {
             {errorMessage && (
               <div className="text-red-500 text-sm mt-2">{errorMessage}</div>
             )}
-            <div className="flex justify-between gap-3 pt-6">
+            <div className="flex justify-between flex-col md:flex-row gap-3 pt-6">
               <Button
                 variant="outline"
                 className="w-full sm:w-auto hover:bg-gray-100 transition-colors"
