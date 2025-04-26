@@ -100,7 +100,7 @@ const ResumeCardItem = ({ item, index }) => {
             {/* Download Button */}
             <DropdownMenuItem>
               <Link
-                to={`/dashboard/resume/${item.documentId}/download`}
+                to={`/dashboard/resume/${item.documentId}/view`}
                 className="cursor-pointer"
               >
                 <Button className="w-full" variant="outline">
