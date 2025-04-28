@@ -21,6 +21,7 @@ const SkillsForm = ({ onNextChange }) => {
   );
 
   useEffect(() => {
+    onNextChange(false);
     setResumeInfo((prev) => ({
       ...prev,
       skills,
@@ -28,6 +29,7 @@ const SkillsForm = ({ onNextChange }) => {
   }, [skills, setResumeInfo]);
 
   const handleChange = (category, index, value) => {
+    onNextChange(false);
     const updated = [...skills[category]];
     updated[index] = value;
     setSkills((prev) => ({
@@ -95,6 +97,7 @@ const SkillsForm = ({ onNextChange }) => {
             {skills[category]?.map((skill, index) => (
               <div key={index} className="flex items-center gap-3 mb-3">
                 <Input
+                  required
                   value={skill}
                   onChange={(e) =>
                     handleChange(category, index, e.target.value)

@@ -24,6 +24,7 @@ const ProjectsForm = ({ onNextChange }) => {
   );
 
   useEffect(() => {
+    onNextChange(false);
     setResumeInfo((prev) => ({
       ...prev,
       projects,
@@ -31,6 +32,7 @@ const ProjectsForm = ({ onNextChange }) => {
   }, [projects, setResumeInfo]);
 
   const handleChange = (index, field, value) => {
+    onNextChange(false)
     const updatedProjects = [...projects];
     updatedProjects[index][field] = value;
     setProjects(updatedProjects);

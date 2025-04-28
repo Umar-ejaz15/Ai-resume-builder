@@ -1,31 +1,47 @@
+import { Sparkles, Rocket, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import { UserButton } from "@clerk/clerk-react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Laptop, FileText, Target, Heart } from "lucide-react"; // Importing Lucide Icons
+  import { Laptop, FileText, Target, Heart } from "lucide-react"; // Importing Lucide Icons
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
-        <div className="max-w-7xl mx-auto text-center text-white relative z-10 px-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-white animate-fade-in">
-            Create Your Professional Resume{" "}
-            <span className="text-white">with AI</span>
+      {/* Hero Section */}  
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+        {/* Decorative Grid */}
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 pointer-events-none" />
+
+        {/* Decorative Icons */}
+        <Sparkles className="absolute top-12 left-12 text-purple-400 opacity-30 w-12 h-12 animate-pulse" />
+        <Rocket className="absolute bottom-16 right-16 text-blue-400 opacity-30 w-14 h-14 animate-bounce-slow" />
+        <Star className="absolute top-1/3 right-1/4 text-yellow-400 opacity-20 w-10 h-10 animate-spin-slow" />
+
+        {/* Content */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-gray-800 animate-fade-in">
+            Craft Your <span className="text-purple-600">Dream Resume</span>{" "}
+            with <span className="text-blue-600">AI</span>
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-blue-100">
-            Build stunning resumes in minutes using advanced artificial
-            intelligence
+
+          <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
+            Instantly build stunning, job-winning resumes powered by
+            cutting-edge artificial intelligence.
           </p>
-          <Link to={"/auth/signup"}>
-            <button className="bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-all transform hover:scale-105 shadow-xl">
-              Get Started
-            </button>
-          </Link>
+
+          <div className="mt-8 flex justify-center">
+            <Link to="/auth/signup">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-2xl"
+              >
+                Get Started
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
-
       {/* Features Section */}
       <section className="min-h-screen w-full bg-white flex items-center justify-center py-12 sm:py-24">
         <div className="max-w-7xl mx-auto text-center px-6">
@@ -73,7 +89,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
       {/* Call to Action Section */}
       <section className="min-h-screen w-full bg-gray-900 flex items-center justify-center relative overflow-hidden py-12 sm:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>

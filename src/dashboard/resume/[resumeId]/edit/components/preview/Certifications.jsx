@@ -1,22 +1,21 @@
 import React from "react";
 
 const Certifications = ({ resumeInfo }) => {
-  const borderColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  const textColor = resumeInfo?.colorTheme?.primary || "#D70040";
   return (
-    <div className="mt-10">
-      <h1
-        className="text-center font-bold text-sm mb-2"
-        style={{ color: textColor }}
-      >
-        Certificates{" "}
-      </h1>
-      <hr style={{ borderColor: borderColor }} />
+    <div className="my-8">
+      {/* Section Title */}
+      <h2 className="text-center font-semibold text-xl text-gray-800 mb-4">
+        Certifications
+      </h2>
+
+      {/* Divider */}
+      <hr className="border-gray-300 mb-4" />
+
       {resumeInfo?.certifications?.map((certification, index) => (
-        <div key={index} className="mt-4">
-          <h3 className="font-semibold text-sm">{certification.title}</h3>
+        <div key={index} className="mb-4">
+          <h3 className="font-semibold text-lg text-gray-800">{certification.title}</h3>
           <p className="text-xs text-gray-600">
-            {certification.issuer} - {certification.year}
+            {certification.issuer} — {certification.year}
           </p>
         </div>
       ))}

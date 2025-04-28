@@ -1,72 +1,58 @@
 import React from "react";
 
 const Skills = ({ resumeInfo }) => {
-  const borderColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  const textColor = resumeInfo?.colorTheme?.primary || "#D70040";
   return (
-    <div className="mt-6">
-      <h1
-        className="text-center font-bold text-sm mb-2"
-        style={{ color: textColor }}
-      >
-        Skills{" "}
-      </h1>
-      <hr style={{ borderColor: borderColor }} />
-      <div className="grid grid-cols-2 gap-x-4">
+    <div className="my-6">
+      {/* Section Title */}
+      <h2 className="text-center font-semibold text-xl text-gray-800 mb-4">
+        Skills
+      </h2>
+
+      {/* Divider */}
+      <hr className="border-gray-300 mb-4" />
+
+      <div className="grid grid-cols-2 gap-4">
+        {/* Languages */}
         {resumeInfo?.skills?.languages && (
-          <div className="mt-4">
-            <h3
-              className="font-semibold text-sm mb-1"
-              style={{ color: textColor }}
-            >
-              Languages
-            </h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Languages</h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
               {resumeInfo.skills.languages.map((language, index) => (
                 <li key={index}>{language}</li>
               ))}
             </ul>
           </div>
         )}
+
+        {/* Frameworks */}
         {resumeInfo?.skills?.frameworks && (
-          <div className="mt-4">
-            <h3
-              className="font-semibold text-sm mb-1"
-              style={{ color: textColor }}
-            >
-              Frameworks 
-            </h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Frameworks</h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
               {resumeInfo.skills.frameworks.map((framework, index) => (
                 <li key={index}>{framework}</li>
               ))}
             </ul>
           </div>
         )}
+
+        {/* Databases */}
         {resumeInfo?.skills?.databases && (
-          <div className="mt-4">
-            <h3
-              className="font-semibold text-sm mb-1"
-              style={{ color: textColor }}
-            >
-              Databases
-            </h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Databases</h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
               {resumeInfo.skills.databases.map((database, index) => (
                 <li key={index}>{database}</li>
               ))}
             </ul>
           </div>
         )}
+
+        {/* Tools */}
         {resumeInfo?.skills?.tools && (
-          <div className="mt-4">
-            <h3
-              className="font-semibold text-sm mb-1"
-              style={{ color: textColor }}
-            >
-              Tools
-            </h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Tools</h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
               {resumeInfo.skills.tools.map((tool, index) => (
                 <li key={index}>{tool}</li>
               ))}

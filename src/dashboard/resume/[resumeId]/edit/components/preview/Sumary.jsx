@@ -1,10 +1,19 @@
 import React from 'react'
 
-const Sumary = ({resumeInfo}) => {
+const Summary = ({ resumeInfo }) => {
   console.log(resumeInfo);
   return (
-      <p className='text-xs'>{resumeInfo?.summary}</p>
+    <div className="my-4 ">
+      {/* Section Title */}
+   
+      
+      {/* Summary Content */}
+      <p className="text-sm text-gray-600 leading-relaxed">
+        {resumeInfo?.summary || ""}
+      </p>
+      <hr className='border-gray-300 my-4' />
+    </div>
   )
 }
 
-export default Sumary
+export default Summary

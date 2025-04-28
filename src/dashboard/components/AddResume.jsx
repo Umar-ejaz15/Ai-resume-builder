@@ -1,114 +1,103 @@
 import { Loader2, PlusSquare } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import GlobelApi from "../../../service/GlobelApi";
 import { useUser } from "@clerk/clerk-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const AddResume = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
+
   const [openDialog, setOpenDialog] = useState(false);
   const [resumeTitle, setResumeTitle] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const navigation = useNavigate();
-  const paramas = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onCreateResume = async () => {
-    setLoading(true);
+  const handleCreateResume = async () => {
+    if (!resumeTitle.trim()) {
+      toast.error("Resume title cannot be empty.");
+      return;
+    }
 
+    setIsLoading(true);
     try {
-      const data = {
+      const payload = {
         data: {
-          tittle: resumeTitle,
+          tittle: resumeTitle.trim(),
           userEmail: user?.primaryEmailAddress?.emailAddress,
           userName: user?.fullName,
         },
       };
 
-      const response = await GlobelApi.createNewResume(data);
+      const response = await GlobelApi.createNewResume(payload);
       const newResumeId = response?.data?.data?.documentId;
 
-      console.log(newResumeId);
-
       if (newResumeId) {
-        navigation(`/dashboard/resume/${newResumeId}/edit`); // <- Navigate with Strapi's ID
+        toast.success("Resume created successfully!");
+        navigate(`/dashboard/resume/${newResumeId}/edit`);
       } else {
-        toast.error("Failed to create resume. Try again.");
+        throw new Error("Invalid response");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong!");
+      toast.error("Failed to create resume. Please try again.");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    console.log(paramas);
-  }, []);
-
   return (
     <>
+      {/* Trigger Box */}
       <div
         onClick={() => setOpenDialog(true)}
         className="w-80 h-80 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center hover:border-gray-400 hover:bg-gray-50 cursor-pointer transition-all duration-300 group"
       >
-        <PlusSquare className="w-16 h-16 text-gray-400 group-hover:text-gray-600 transition-colors duration-300" />
+        <PlusSquare className="w-16 h-16 text-gray-400 group-hover:text-gray-600 transition-colors" />
         <p className="mt-4 text-gray-500 group-hover:text-gray-700 font-medium">
           Create New Resume
         </p>
       </div>
 
+      {/* Dialog */}
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-xl p-6">
-          <DialogHeader className="space-y-4">
+        <DialogContent className="sm:max-w-md md:max-w-lg p-6">
+          <DialogHeader>
             <DialogTitle className="text-2xl font-semibold text-gray-900">
               Create Your Resume
             </DialogTitle>
-            <DialogDescription>
-              <span className="text-gray-600 text-sm">
-                Give your resume a meaningful title to easily identify it later
-              </span>
-              <Input
-                onChange={(e) => setResumeTitle(e.target.value)}
-                value={resumeTitle}
-                className="mt-4 w-full transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter resume title..."
-              />
+            <DialogDescription className="text-gray-600 text-sm mt-2">
+              Give your resume a title to identify it later.
             </DialogDescription>
-            {errorMessage && (
-              <div className="text-red-500 text-sm mt-2">{errorMessage}</div>
-            )}
-            <div className="flex justify-between flex-col md:flex-row gap-3 pt-6">
+
+            <Input
+              value={resumeTitle}
+              onChange={(e) => setResumeTitle(e.target.value)}
+              placeholder="Enter resume title..."
+              className="mt-4"
+            />
+
+            {/* Action Buttons */}
+            <div className="flex flex-col md:flex-row gap-4 pt-6">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto hover:bg-gray-100 transition-colors"
+                className="w-full md:w-auto"
                 onClick={() => setOpenDialog(false)}
+                disabled={isLoading}
               >
                 Cancel
               </Button>
+
               <Button
-                disabled={!resumeTitle || loading}
-                onClick={onCreateResume}
-                className="w-full sm:w-auto"
+                className="w-full md:w-auto"
+                onClick={handleCreateResume}
+                disabled={!resumeTitle.trim() || isLoading}
               >
-                {loading ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  <span>Create</span>
-                )}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Create"}
               </Button>
             </div>
           </DialogHeader>

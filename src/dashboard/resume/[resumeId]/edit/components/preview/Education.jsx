@@ -1,21 +1,20 @@
 import React from "react";
 
 const Education = ({ resumeInfo }) => {
-  const borderColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  const textColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  
   return (
-    <div className="mt-6">
-            <h1 className="text-center font-bold text-sm mb-2" style={{ color: textColor }}>
-        Education{" "}
-      </h1>
-      <hr 
-          style={{ borderColor: textColor }}
-      />
+    <div className="my-6">
+      {/* Section Title */}
+      <h2 className="text-center font-semibold text-xl text-gray-800 mb-4">
+        Education
+      </h2>
+
+      {/* Divider */}
+      <hr className="border-gray-300 mb-4" />
+
       {resumeInfo?.education?.map((edu, index) => (
-        <div key={index} className="mt-4">
-          <h3 className="font-semibold text-base">{edu.institution}</h3>
-          <p className="text-sm font-medium">{edu.degree}</p>
+        <div key={index} className="mb-4">
+          <h3 className="font-semibold text-lg text-gray-800">{edu.institution}</h3>
+          <p className="text-sm font-medium text-gray-700">{edu.degree}</p>
           <p className="text-xs text-gray-600">{edu.duration}</p>
           <p className="text-xs text-gray-600">{edu.location}</p>
         </div>

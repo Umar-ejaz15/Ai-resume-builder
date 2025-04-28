@@ -44,16 +44,16 @@ const FormSection = () => {
       {formIndex == 2 ? (
         <SumaryForm onNextChange={(v) => setOnNextChange(v)} />
       ) : null}
-      {formIndex == 3 ? (
+      {formIndex == 4 ? (
         <ExperienceForm onNextChange={(v) => setOnNextChange(v)} />
       ) : null}
-      {formIndex == 4 ? (
+      {formIndex == 6 ? (
         <EducationForm onNextChange={(v) => setOnNextChange(v)} />
       ) : null}
-      {formIndex == 5 ? (
+      {formIndex == 3 ? (
         <SkillsForm onNextChange={(v) => setOnNextChange(v)} />
       ) : null}
-      {formIndex == 6 ? (
+      {formIndex == 5 ? (
         <ProjectsForm onNextChange={(v) => setOnNextChange(v)} />
       ) : null}
       {formIndex == 7 ? (

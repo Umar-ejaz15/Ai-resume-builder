@@ -26,6 +26,7 @@ const EducationForm = ({ onNextChange }) => {
 
   // Whenever educationList changes, sync it with ResumeContext
   useEffect(() => {
+    onNextChange(false);
     setResumeInfo((prev) => ({
       ...prev,
       education: educationList,
@@ -33,6 +34,7 @@ const EducationForm = ({ onNextChange }) => {
   }, [educationList, setResumeInfo]);
 
   const onChange = (index, event) => {
+    onNextChange(false);
     const { name, value } = event.target;
     const updatedEducation = [...educationList];
     updatedEducation[index][name] = value;

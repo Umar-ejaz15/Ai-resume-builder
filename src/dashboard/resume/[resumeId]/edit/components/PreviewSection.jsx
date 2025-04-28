@@ -15,28 +15,28 @@ const PreviewSection = () => {
 
   return (
     <div
-    id="preview"
-      className="shadow-lg h-full mt-10 p-14  border-t-[20px]"
+      id="preview"
+      className="shadow-lg h-full p-6 md:p-10 border-t-[20px] border-gray-300"
       style={{ borderColor }}
     >
       {/* Personal Details */}
       <PersonalDetails resumeInfo={resumeInfo} />
-      
+
       {/* Summary */}
       <Sumary resumeInfo={resumeInfo} />
-      
+
+      <Skills resumeInfo={resumeInfo} />
       {/* Work Experience */}
       <WorkExprience resumeInfo={resumeInfo} />
-      
+
+      {/* Skills */}
+      <Projects resumeInfo={resumeInfo} />
+
       {/* Education */}
       <Education resumeInfo={resumeInfo} />
-      
-      {/* Skills */}
-      <Skills resumeInfo={resumeInfo} />
-      
+
       {/* Projects */}
-      <Projects resumeInfo={resumeInfo} />
-      
+
       {/* Certifications */}
       <Certifications resumeInfo={resumeInfo} />
     </div>

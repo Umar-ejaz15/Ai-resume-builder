@@ -9,7 +9,6 @@ import { ChatWithAI } from "../../../../../../../service/GoogleAPI";
 import { toast } from "sonner";
 import GlobelApi from "../../../../../../../service/GlobelApi";
 
-
 const ExperienceForm = ({ onNextChange }) => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
 
@@ -17,10 +16,8 @@ const ExperienceForm = ({ onNextChange }) => {
   const [isLoading, setIsLoading] = useState(false); // added loading state
   const params = useParams();
 
-
-
   const [summary, setSummary] = useState("");
-  
+
   const initialField = {
     company: "",
     role: "",
@@ -32,6 +29,7 @@ const ExperienceForm = ({ onNextChange }) => {
   const [experienceList, setExperienceList] = useState([initialField]);
 
   const handleChange = (index, event) => {
+    onNextChange(false);
     const { name, value } = event.target;
     const updatedList = [...experienceList];
     updatedList[index][name] = value;
@@ -102,6 +100,7 @@ const ExperienceForm = ({ onNextChange }) => {
   };
 
   useEffect(() => {
+    onNextChange(false);
     setResumeInfo((prev) => ({
       ...prev,
       experience: experienceList,
@@ -109,7 +108,7 @@ const ExperienceForm = ({ onNextChange }) => {
   }, [experienceList, setResumeInfo]);
 
   return (
-    <div className="p-8 bg-white rounded-2xl mt-10 shadow-2xl border-t-8 border-purple-600 max-w-4xl mx-auto">
+    <div className="p-8 bg-white rounded-2xl mt-10 shadow-2xl border-t-[3.5px] border-purple-600 max-w-4xl mx-auto">
       <h1 className="text-4xl font-extrabold text-gray-800 mb-2">
         Work Experience
       </h1>
@@ -126,6 +125,7 @@ const ExperienceForm = ({ onNextChange }) => {
           <div>
             <Label className="text-gray-700">Company</Label>
             <Input
+              required
               name="company"
               type="text"
               value={item.company}
@@ -137,6 +137,7 @@ const ExperienceForm = ({ onNextChange }) => {
           <div>
             <Label className="text-gray-700">Role</Label>
             <Input
+              required
               name="role"
               type="text"
               value={item.role}
@@ -148,6 +149,7 @@ const ExperienceForm = ({ onNextChange }) => {
           <div>
             <Label className="text-gray-700">Duration</Label>
             <Input
+              required
               name="duration"
               type="text"
               value={item.duration}
@@ -159,6 +161,7 @@ const ExperienceForm = ({ onNextChange }) => {
           <div>
             <Label className="text-gray-700">Location</Label>
             <Input
+              required
               name="location"
               type="text"
               value={item.location}
@@ -184,7 +187,7 @@ const ExperienceForm = ({ onNextChange }) => {
               onClick={() => generateWorkExperience(index)}
               disabled={isLoadingIndex === index}
             >
-              {isLoadingIndex === index ? "Generating..." : "Generate From AI"}
+              {isLoadingIndex === index ? "Generating..." : "Generate Description"}
             </Button>
           </div>
 

@@ -15,6 +15,7 @@ const SumaryForm = ({ onNextChange }) => {
   const params = useParams();
 
   useEffect(() => {
+    onNextChange(false);
     if (resumeInfo?.summary) {
       setSummary(resumeInfo.summary);
     }
@@ -34,7 +35,7 @@ const SumaryForm = ({ onNextChange }) => {
       setIsLoading(true);
       console.log(resumeInfo?.name, resumeInfo?.title);
 
-      const prompt = `Generate a brief professional summary (2-3 sentences) for ${resumeInfo?.name} who works as a ${resumeInfo?.title}. Focus on their role and core expertise.`;
+      const prompt = `Generate a brief professional summary (2-3 sentences) for ${resumeInfo?.name} who works as a ${resumeInfo?.title}. Focus on their role and core expertise. dont use  my name start with I'm`;
       const dataForAI = {
         type: "appllication/json",
         prompt: prompt,

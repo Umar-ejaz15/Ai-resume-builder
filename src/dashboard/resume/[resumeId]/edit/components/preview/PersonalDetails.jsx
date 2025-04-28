@@ -4,34 +4,35 @@ import React, { useContext } from "react";
 const PersonalDetails = ({ resumeInfo }) => {
   console.log(resumeInfo);
 
-  const borderColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  const textColor = resumeInfo?.colorTheme?.primary || "#D70040";
-  const backgroundColor = resumeInfo?.colorTheme?.primary || "#D70040";
   return (
-    <div>
-      <h2
-        style={{ color: textColor }}
-        className="font-bold text-xl text-center"
-      >
-        {resumeInfo?.name || ""}
+    <div className="resume bg-white rounded-lg ">
+      {/* Name */}
+      <h2 className="font-semibold text-2xl md:text-3xl text-center">
+        {resumeInfo?.name || "John Doe"}
       </h2>
-      <h3 className="font-medium text-sm text-center">
-        {resumeInfo?.title || ""}
+      
+      {/* Title */}
+      <h3 className="font-medium text-sm text-center text-gray-700 md:text-lg mt-1">
+        {resumeInfo?.title || "Software Engineer"}
       </h3>
-      <p className="text-center font-normal text-xs">{resumeInfo?.location}</p>
-      <div className="flex justify-between">
-        <p className="font-normal text-xs" style={{ color: textColor }}>
-          {resumeInfo?.email || ""}
+      
+      {/* Location */}
+      <p className="text-center font-normal text-xs text-gray-500 mt-2">
+        {resumeInfo?.location || "City, Country"}
+      </p>
+      
+      {/* Contact Information (Email & Phone) */}
+      <div className="flex justify-center space-x-6 mt-3">
+        <p className="font-normal text-xs text-gray-600">
+          {resumeInfo?.email || "email@example.com"}
         </p>
-        <p className="font-normal text-xs" style={{ color: textColor }}>
-          {resumeInfo?.phone || ""}
+        <p className="font-normal text-xs text-gray-600">
+          {resumeInfo?.phone || "+123 456 7890"}
         </p>
       </div>
-      <hr
-        style={{ borderColor: borderColor }}
-        className="border-[1.5px] my-2"
-      />
-     
+
+      {/* Divider */}
+      <hr className="border-[1px] border-gray-200 my-4" />
     </div>
   );
 };
