@@ -23,7 +23,6 @@ const ViewAndDownloadResume = () => {
     window.print();
   };
 
-
   useEffect(() => {
     getResumeInfo();
   }, []);
@@ -50,7 +49,6 @@ const ViewAndDownloadResume = () => {
               >
                 <Download size={18} /> Download
               </Button>
-            
             </div>
 
             <p className="text-xs text-zinc-400 tracking-wide">

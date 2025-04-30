@@ -38,7 +38,7 @@ const AddResume = () => {
 
       if (newResumeId) {
         toast.success("Resume created successfully!");
-        navigate(`/dashboard/resume/${newResumeId}/edit`);
+        navigate(`/dashboard/resume/${newResumeId}/tempeletes`);
       } else {
         throw new Error("Invalid response");
       }

@@ -11,13 +11,11 @@ import GlobelApi from "../../../../../../../service/GlobelApi";
 
 const ExperienceForm = ({ onNextChange }) => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
-
   const [isLoadingIndex, setIsLoadingIndex] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // added loading state
   const params = useParams();
-
   const [summary, setSummary] = useState("");
-
+  
   const initialField = {
     company: "",
     role: "",
@@ -26,7 +24,15 @@ const ExperienceForm = ({ onNextChange }) => {
     description: "",
   };
 
-  const [experienceList, setExperienceList] = useState([initialField]);
+  // Initialize experienceList from resumeInfo, fallback to initialField if no data
+  const [experienceList, setExperienceList] = useState(resumeInfo?.experience || [initialField]);
+
+  useEffect(() => {
+    // If there's existing data in resumeInfo, we should set the experienceList to that
+    if (resumeInfo?.experience) {
+      setExperienceList(resumeInfo.experience);
+    }
+  }, [resumeInfo]);
 
   const handleChange = (index, event) => {
     onNextChange(false);
@@ -90,6 +96,11 @@ const ExperienceForm = ({ onNextChange }) => {
     try {
       await GlobelApi.updateResume(params?.resumeId, data);
       toast.success("Details Updated Successfully");
+      // Update the context with the new experience list
+      setResumeInfo((prev) => ({
+        ...prev,
+        experience: experienceList,
+      }));
       onNextChange(true);
     } catch (error) {
       console.error(error);
@@ -99,22 +110,10 @@ const ExperienceForm = ({ onNextChange }) => {
     }
   };
 
-  useEffect(() => {
-    onNextChange(false);
-    setResumeInfo((prev) => ({
-      ...prev,
-      experience: experienceList,
-    }));
-  }, [experienceList, setResumeInfo]);
-
   return (
     <div className="p-8 bg-white rounded-2xl mt-10 shadow-2xl border-t-[3.5px] border-purple-600 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-2">
-        Work Experience
-      </h1>
-      <p className="text-gray-500 text-sm mb-8">
-        Add your previous work experiences here.
-      </p>
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-2">Work Experience</h1>
+      <p className="text-gray-500 text-sm mb-8">Add your previous work experiences here.</p>
 
       {experienceList.map((item, index) => (
         <form

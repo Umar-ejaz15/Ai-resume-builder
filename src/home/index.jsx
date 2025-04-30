@@ -2,13 +2,13 @@ import { Sparkles, Rocket, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { UserButton } from "@clerk/clerk-react";
 import React from "react";
-  import { Laptop, FileText, Target, Heart } from "lucide-react"; // Importing Lucide Icons
+import { Laptop, FileText, Target, Heart } from "lucide-react"; // Importing Lucide Icons
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}  
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
         {/* Decorative Grid */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 pointer-events-none" />
