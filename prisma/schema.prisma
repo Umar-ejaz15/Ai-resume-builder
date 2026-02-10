@@ -1,0 +1,34 @@
+// Prisma schema for AI Resume Builder
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Resume {
+  id             String   @id @default(cuid())
+  userEmail      String   @db.VarChar(255)
+  userName       String?  @db.VarChar(255)
+  tittle         String?  @db.VarChar(500)  // Keep typo for compatibility
+  name           String?  @db.VarChar(255)
+  title          String?  @db.VarChar(500)
+  email          String?  @db.VarChar(255)
+  phone          String?  @db.VarChar(50)
+  location       String?  @db.VarChar(255)
+  summary        String?  @db.Text
+  experience     Json?    @default("[]") @db.JsonB
+  education      Json?    @default("[]") @db.JsonB
+  skills         Json?    @default("{}") @db.JsonB
+  projects       Json?    @default("[]") @db.JsonB
+  certifications Json?    @default("[]") @db.JsonB
+  documentId     String?  @unique @db.VarChar(255)
+  createdAt      DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime @updatedAt @db.Timestamptz(6)
+
+  @@index([userEmail])
+  @@map("resumes")
+}
