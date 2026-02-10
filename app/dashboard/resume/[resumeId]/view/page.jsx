@@ -6,7 +6,6 @@ import { ResumeContext } from "@/context/ResumeContext";
 import PreviewSection from "@/components/resume/preview/PreviewSection";
 import { useParams } from "next/navigation";
 import resumeApi from "@/services/resumeApi";
-import Header from "@/components/Header";
 import { Download } from "lucide-react";
 
 export default function ViewAndDownloadResumePage() {
@@ -37,8 +36,6 @@ export default function ViewAndDownloadResumePage() {
   return (
     <ResumeContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div id="skip-area" className="">
-        <Header className="" />
-
         <div className="flex-grow min-h-screen bg-gradient-to-tr from-white via-zinc-50 to-white p-6 md:p-10 flex flex-col items-center justify-center">
           <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl p-6 md:p-10 max-w-3xl w-full text-center animate-fadeIn border border-zinc-200">
             <h2 className="text-3xl md:text-4xl font-extrabold text-purple-600 mb-4 tracking-tight">
