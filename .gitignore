@@ -42,6 +42,12 @@ lerna-debug.log*
 # Prisma
 /src/generated/prisma
 
+# Old Vite/React files (migrated to Next.js)
+/src/
+/service/
+index.html
+vite.config.js
+
 # OS
 .DS_Store
 Thumbs.db
